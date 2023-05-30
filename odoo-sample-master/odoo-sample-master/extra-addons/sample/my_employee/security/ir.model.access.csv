@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_employee,model_employee_access,model_my_employee_employee,base.group_user,1,1,1,1
+access_myemployee,model_myemployee_access,model_my_employee_myemployee,base.group_user,1,1,1,1
+access_information,model_information_access,model_income_information,base.group_user,1,1,1,1
+access_appendix,model_appendix_access,model_contract_appendix,base.group_user,1,1,1,1
+access_adjustment,model_adjustment_access,model_salary_adjustment,base.group_user,1,1,1,1

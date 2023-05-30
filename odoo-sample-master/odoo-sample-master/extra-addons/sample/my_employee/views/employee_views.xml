@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Định nghĩa giao diện hiển thị danh sách nhân viên -->
+        <record model="ir.ui.view" id="view_employee_tree">
+            <field name="name">my.employee.tree</field>
+            <field name="model">my_employee.employee</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="contact_info"/>
+                    <field name="address"/>
+                    <field name="work_experience"/>
+                                <field name="education"/>
+                                <field name="family_info"/>
+                                <field name="skills"/>
+                            <field name="medical_records"/>
+                            <field name="attachments" widget="many2many_binary"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Định nghĩa giao diện hiển thị thông tin chi tiết của một nhân viên -->
+        <record model="ir.ui.view" id="view_employee_form">
+            <field name="name">my.employee.form</field>
+            <field name="model">my_employee.employee</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="contact_info"/>
+                                <field name="address"/>
+                            </group>
+                            <group>
+                                <field name="work_experience"/>
+                                <field name="education"/>
+                                <field name="family_info"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="skills"/>
+                            <field name="medical_records"/>
+                            <field name="attachments" widget="many2many_binary"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Định nghĩa menu để truy cập thông tin cá nhân -->
+        <record model="ir.actions.act_window" id="action_employee">
+            <field name="name">Thông tin cá nhân</field>
+            <field name="res_model">my_employee.employee</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem 
+        name="Thông tin cá nhân" 
+        id="menu_employee1" 
+        action="action_employee" 
+        />
+    </data>
+    <data>
+        <!-- Định nghĩa giao diện hiển thị -->
+        <record model="ir.ui.view" id="view_myemployee_tree">
+            <field name="name">my_employee.myemployee.tree</field>
+            <field name="model">my_employee.myemployee</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                            <field name="job_position"/>
+                            <field name="job_title"/>
+                            <field name="job_level"/>
+                            <field name="department"/>
+                            <field name="workplace"/>
+                            <field name="employee_group"/>
+                            <field name="manager"/>
+                            <field name="work_contact_phone"/>
+                            <field name="work_contact_email"/>
+                            <field name="hire_date"/>
+                            <field name="birthday"/>
+                </tree>
+            </field>
+        </record>
+
+
+
+        <record id="view_myemployee_form" model="ir.ui.view">
+            <field name="name">my_employee.myemployee.form</field>
+            <field name="model">my_employee.myemployee</field>
+            <field name="arch" type="xml">
+                <form string="Thông tin công việc nhân viên">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="job_position"/>
+                            <field name="job_title"/>
+                            <field name="job_level"/>
+                            <field name="department"/>
+                            <field name="workplace"/>
+                            <field name="employee_group"/>
+                            <field name="manager"/>
+                            <field name="work_contact_phone"/>
+                            <field name="work_contact_email"/>
+                            <field name="hire_date"/>
+                            <field name="birthday"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Định nghĩa action để mở form thông tin công việc -->
+        <record id="action_myemployee_form" model="ir.actions.act_window">
+            <field name="name">Thông tin công việc nhân viên</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">my_employee.myemployee</field>
+            <field name="view_mode">tree,form</field>
+            
+        </record>
+        
+        <menuitem 
+        name="Thông tin công việc" 
+        id="menu_employee"
+        action="action_myemployee_form"
+        />
+    </data>
+
+     <data>
+        <!-- Form View -->
+        <record id="view_income_information_form" model="ir.ui.view">
+            <field name="name">income.information.form</field>
+            <field name="model">income.information</field>
+            <field name="arch" type="xml">
+                <form string="Thông tin liên quan thu nhập">
+                    <sheet>
+                        <group>
+                            <field name="contract_id"/>
+                        </group>
+                        <notebook>
+                            <page string="Phụ lục hợp đồng">
+                                <field name="contract_appendix_ids">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Phụ lục điều chỉnh lương">
+                                <field name="salary_adjustment_ids">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree View -->
+        <record id="view_income_information_tree" model="ir.ui.view">
+            <field name="name">income.information.tree</field>
+            <field name="model">income.information</field>
+            <field name="arch" type="xml">
+                <tree string="Thông tin liên quan thu nhập">
+                    <field name="contract_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_income_information" model="ir.actions.act_window">
+            <field name="name">Thông tin liên quan thu nhập</field>
+            <field name="res_model">income.information</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Menu Item -->
+        <menuitem 
+        id="menu_income_information" 
+        name="Thông tin liên quan thu nhập" 
+        action="action_income_information"
+        parent="my_employee_app_menu"
+        sequence="100"/>
+
+         <menuitem
+        id="my_employee_app_menu"
+        name="Simple School"
+        sequence="300"/>
+
+    </data>
+
+
+
+</odoo>
